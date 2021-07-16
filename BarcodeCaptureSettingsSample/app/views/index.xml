@@ -1,0 +1,8 @@
+<Alloy>
+	<Window title="BC Settings Sample" id="scan_window">
+		<ActionBar id="actionbar" title="Barcode Capture Settings Sample" />
+		<Menu>
+			<MenuItem id="settingsMenuItem" onClick="openSettings" />
+		</Menu>
+	</Window>
+</Alloy>

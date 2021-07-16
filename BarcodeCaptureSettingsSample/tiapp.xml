@@ -1,6 +1,6 @@
 <ns0:app xmlns:ns0="http://ti.appcelerator.org" xmlns:ns1="http://schemas.android.com/apk/res/android">
-  <id>com.scandit.barcodecapturerejectsample</id>
-  <name>BCReject</name>
+  <id>com.scandit.ti.barcodecapturesettingssample</id>
+  <name>BCSettings</name>
   <version>1.0</version>
   <publisher>not specified</publisher>
   <url>unspecified</url>
@@ -10,7 +10,7 @@
   <fullscreen>false</fullscreen>
   <navbar-hidden>false</navbar-hidden>
   <analytics>true</analytics>
-  <guid>e45e8e4b-8e17-4b1b-9fff-b51a4b19766f</guid>
+  <guid>aa813b34-2c68-4736-9111-c9e86a7b16c1</guid>
   <property name="ti.ui.defaultunit" type="string">dp</property>
   <property name="run-on-main-thread" type="bool">true</property>
   <ios>
@@ -44,11 +44,11 @@
   </ios>
   <android>
     <manifest ns1:versionCode="1">
+      <application ns1:theme="@style/MyTheme" />
       <uses-sdk ns1:minSdkVersion="21" ns1:targetSdkVersion="29" />
     </manifest>
   </android>
   <modules>
-    <module platform="commonjs">ti.cloud</module>
     </modules>
   <deployment-targets>
     <target device="android">true</target>
@@ -59,5 +59,4 @@
   <plugins>
     <plugin version="1.0">ti.alloy</plugin>
   </plugins>
-  <property name="appc-app-id" type="string">6064017ee58d844c38f5402f</property>
 </ns0:app>
