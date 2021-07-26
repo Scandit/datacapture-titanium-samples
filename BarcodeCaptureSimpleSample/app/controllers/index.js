@@ -78,6 +78,10 @@ overlay.viewfinder = new ScanditCore.RectangularViewfinder(
   ScanditCore.RectangularViewfinderLineStyle.Light
 );
 
+// Adjust the overlay's barcode highlighting to match the new viewfinder styles and improve the visibility of
+// feedback. With 6.10 we will introduce this visual treatment as a new style for the overlay.
+overlay.brush = new ScanditCore.Brush(ScanditCore.Color.fromRGBA(0, 0, 0, 0), ScanditCore.Color.fromHex('FFFF'), 3);
+
 const openScanner = () => {
     // Create a window to add the data capture view to (you can also create a view).
     const window = Titanium.UI.createWindow({

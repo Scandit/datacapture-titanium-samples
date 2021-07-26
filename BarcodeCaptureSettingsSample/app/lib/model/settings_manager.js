@@ -106,9 +106,8 @@ class SettingsManager {
     const newCamera = ScanditCore.Camera.atPosition(newCameraPosition);
     if (newCamera) {
       newCamera.applySettings(this._cameraSettings);
+      this._dataCaptureContext.setFrameSource(newCamera);
       this._currentCamera = newCamera;
-      this._dataCaptureContext.setFrameSource(this._currentCamera);
-      this._currentCamera.switchToDesiredState(ScanditCore.FrameSourceState.On);
     }
   }
 
@@ -125,27 +124,27 @@ class SettingsManager {
   }
 
   get zoomFactor() {
-    return parseFloat(this._cameraSettings.zoomFactor).toFixed(2);
+    return parseFloat(this._cameraSettings.zoomFactor);
   }
 
   set zoomFactor(newZoomFactor) {
-    if (this.zoomFactor == newZoomFactor.toFixed(2)) {
+    if (this.zoomFactor == newZoomFactor) {
       return;
     }
-    this._cameraSettings.zoomFactor = newZoomFactor.toFixed(2);
+    this._cameraSettings.zoomFactor = newZoomFactor;
     this._currentCamera.applySettings(this._cameraSettings);
   }
 
   get zoomGestureZoomFactor() {
-    return parseFloat(this._cameraSettings.zoomGestureZoomFactor).toFixed(2);
+    return parseFloat(this._cameraSettings.zoomGestureZoomFactor);
   }
 
   set zoomGestureZoomFactor(newZoomGestureZoomFactor) {
-    if (this.zoomGestureZoomFactor == newZoomGestureZoomFactor.toFixed(2)) {
+    if (this.zoomGestureZoomFactor == newZoomGestureZoomFactor) {
       return;
     }
     this._cameraSettings.zoomGestureZoomFactor =
-      newZoomGestureZoomFactor.toFixed(2);
+      newZoomGestureZoomFactor;
     this._currentCamera.applySettings(this._cameraSettings);
   }
 

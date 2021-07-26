@@ -74,7 +74,10 @@ const dataCaptureView = new ScanditCore.DataCaptureView(context);
 // Add a barcode capture overlay to the data capture view to render the location of captured barcodes on top of
 // the video preview. This is optional, but recommended for better visual feedback.
 const overlay = ScanditBarcode.BarcodeCaptureOverlay.withBarcodeCaptureForView(barcodeCapture, dataCaptureView);
-overlay.brush = ScanditCore.Brush.transparent;
+
+// Adjust the overlay's barcode highlighting to match the new viewfinder styles and improve the visibility of
+// feedback. With 6.10 we will introduce this visual treatment as a new style for the overlay.
+overlay.brush = new ScanditCore.Brush(ScanditCore.Color.fromRGBA(0, 0, 0, 0), ScanditCore.Color.fromHex('FFFF'), 3);
 
 // Add a square viewfinder as we are only scanning square QR codes.
 overlay.viewfinder = new ScanditCore.RectangularViewfinder(

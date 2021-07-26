@@ -21,9 +21,37 @@ const handleDidScan = (barcodeCapture, session, _) => {
     barcodeCapture.isEnabled = false;
   }
 
+  let alertText = `Scanned: ${barcode.data} (${symbology.readableName})`;
+
+  // Show data scanned for Composite Codes.
+  if (barcode.compositeFlag && barcode.compositeFlag !== CompositeFlag.Unknown) {
+    let compositeCodeType = '';
+
+    switch (barcode.compositeFlag) {
+      case CompositeFlag.GS1TypeA:
+        compositeCodeType = "CC Type A";
+        break;
+      case CompositeFlag.GS1TypeB:
+        compositeCodeType = "CC Type B";
+        break;
+      case CompositeFlag.GS1TypeC:
+        compositeCodeType = "CC Type C";
+        break;
+      default:
+        break;
+    }
+
+    alertText = `${compositeCodeType}\n${symbology.readableName}:\n${barcode.data}\n${barcode.compositeData}\nSymbol Count: ${barcode.symbolCount}`;
+  }
+
+  // Show data scanned for Add-on Codes.
+  if (barcode.addOnData) {
+    alertText = `${symbology.readableName}:\n${barcode.data} ${barcode.addOnData}\nSymbol Count: ${barcode.symbolCount}`;
+  }
+
   // The `alert` dialog displays the barcode information and will re-enable barcode capture once clicked.
   const dialog = Ti.UI.createAlertDialog({
-    message: `Scanned: ${barcode.data} (${symbology.readableName})`,
+    message: alertText,
     ok: "OK",
     title: "Scan Result",
     persistent: true,
