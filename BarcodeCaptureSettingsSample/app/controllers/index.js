@@ -24,17 +24,17 @@ const handleDidScan = (barcodeCapture, session, _) => {
   let alertText = `Scanned: ${barcode.data} (${symbology.readableName})`;
 
   // Show data scanned for Composite Codes.
-  if (barcode.compositeFlag && barcode.compositeFlag !== CompositeFlag.Unknown) {
+  if (barcode.compositeFlag && barcode.compositeFlag !== ScanditBarcode.CompositeFlag.Unknown) {
     let compositeCodeType = '';
 
     switch (barcode.compositeFlag) {
-      case CompositeFlag.GS1TypeA:
+      case ScanditBarcode.CompositeFlag.GS1TypeA:
         compositeCodeType = "CC Type A";
         break;
-      case CompositeFlag.GS1TypeB:
+      case ScanditBarcode.CompositeFlag.GS1TypeB:
         compositeCodeType = "CC Type B";
         break;
-      case CompositeFlag.GS1TypeC:
+      case ScanditBarcode.CompositeFlag.GS1TypeC:
         compositeCodeType = "CC Type C";
         break;
       default:
