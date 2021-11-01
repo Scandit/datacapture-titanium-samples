@@ -73,9 +73,10 @@ class SettingsManager {
     );
 
     this._overlay =
-      ScanditBarcode.BarcodeCaptureOverlay.withBarcodeCaptureForView(
+      ScanditBarcode.BarcodeCaptureOverlay.withBarcodeCaptureForViewWithStyle(
         this._barcodeCapture,
-        this._dataCaptureView
+        this._dataCaptureView,
+        ScanditBarcode.BarcodeCaptureOverlayStyle.Frame
       );
   }
 
@@ -506,7 +507,11 @@ class SettingsManager {
   }
 
   get defaultBrush() {
-    return ScanditBarcode.BarcodeCaptureOverlay.defaultBrush;
+    let defaultOverlay = ScanditBarcode.BarcodeCaptureOverlay.withBarcodeCaptureForViewWithStyle(
+      this._barcodeCapture, null, this._overlay.style
+    );
+
+    return defaultOverlay.brush;
   }
 
   get currentBrush() {
@@ -515,6 +520,26 @@ class SettingsManager {
 
   set currentBrush(newBrush) {
     this._overlay.brush = newBrush;
+  }
+
+  get currentOverlayStyle() {
+    return this._overlay.style;
+  }
+
+  set currentOverlayStyle(newStyle) {
+    var shouldShowScanAreaGuides = this._overlay.shouldShowScanAreaGuides;
+    var viewfinder = this._overlay.viewfinder;
+
+    this._dataCaptureView.removeOverlay(this._overlay);
+
+    this._overlay = ScanditBarcode.BarcodeCaptureOverlay.withBarcodeCaptureForViewWithStyle(
+      this._barcodeCapture,
+      this._dataCaptureView,
+      newStyle
+    );
+
+    this._overlay.shouldShowScanAreaGuides = shouldShowScanAreaGuides;
+    this._overlay.viewfinder = viewfinder;
   }
 
   get enabledCompositeTypes() {
@@ -675,6 +700,8 @@ class SettingsManager {
       this._overlay.viewfinder = new ScanditCore.LaserlineViewfinder();
     } else if (newValue == ViewfinderTypes.Rectangular) {
       this._overlay.viewfinder = new ScanditCore.RectangularViewfinder();
+    } else {
+      this._overlay.viewfinder = null;
     }
   }
 
@@ -745,10 +772,14 @@ class SettingsManager {
   }
 
   set rectangularViewfinderStyle(newValue) {
+    var dimming = this._overlay.viewfinder.dimming;
+    var animation = this._overlay.viewfinder.animation;
     this._overlay.viewfinder = new ScanditCore.RectangularViewfinder(
       newValue,
       this.rectangularViewfinderLineStyle
     );
+    this._overlay.viewfinder.dimming = dimming;
+    this._overlay.viewfinder.animation = animation;
   }
 
   get rectangularViewfinderLineStyle() {
@@ -767,7 +798,7 @@ class SettingsManager {
   }
 
   set dimming(newValue) {
-    this._overlay.viewfinder.dimming = newValue;
+    this._overlay.viewfinder.dimming = Number(newValue);
   }
 
   get rectangularColor() {

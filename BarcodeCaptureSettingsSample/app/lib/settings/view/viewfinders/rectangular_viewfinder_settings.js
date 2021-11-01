@@ -147,7 +147,7 @@ function setupDimmingView() {
   const container = view.createContainerView(0, 60, 0);
   const label = view.createLeftLabel("Dimming (0.0 - 1.0)", 5);
   const textField = Ti.UI.createTextField({
-    width: 250,
+    width: 150,
     height: 40,
     right: 5,
     color: "black",
@@ -155,6 +155,7 @@ function setupDimmingView() {
     keyboardType: Titanium.UI.KEYBOARD_TYPE_NUMBERS_PUNCTUATION,
     inputType: Titanium.UI.INPUT_TYPE_CLASS_NUMBER,
     value: settings.instance.dimming,
+    padding: { right: 10 },
   });
   textField.addEventListener("change", function (e) {
     const input = parseFloat(e.value) || 0.0;

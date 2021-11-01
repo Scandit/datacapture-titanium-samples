@@ -28,8 +28,8 @@ exports.LaserlineViewfinderSettings = function (window) {
 
   view.add(setupStyle());
   view.add(setupWidthView());
-  view.add(setupEnabledColor());
-  view.add(setupDisabledColor());
+  view.add(colorsContainer);
+  setupColorsContainer();
 
   return view;
 };
@@ -50,6 +50,7 @@ function setupStyle() {
   picker.add(pickerData);
   picker.addEventListener("change", function (event) {
     settings.instance.laserlineStyle = event.row.properties.value;
+    setupColorsContainer();
   });
 
   const label = view.createLeftLabel("Style", 5);
@@ -113,6 +114,20 @@ class WidthValueSetter {
   }
 }
 
+const colorsContainer = Ti.UI.createView({
+  height: Titanium.UI.SIZE,
+  horizontalWrap: false,
+  layout: "vertical",
+  right: 0,
+  top: 10,
+});
+
+function setupColorsContainer() {
+  colorsContainer.removeAllChildren();
+  colorsContainer.add(setupEnabledColor());
+  colorsContainer.add(setupDisabledColor());
+}
+
 function setupEnabledColor() {
   var container = view.createContainerView(5, 60, 0);
 
@@ -122,21 +137,38 @@ function setupEnabledColor() {
     width: 200,
   });
 
-  const availableColors = [];
-  availableColors.push(ScanditCore.Color.fromHex("#000000"));
-  availableColors.push(ScanditCore.Color.fromHex("#ff0000"));
-  availableColors.push(ScanditCore.Color.fromHex("#ffffff"));
-
-  const pickerData = [];
-  pickerData.push(view.createPickerRow("Default", availableColors[0]));
-  pickerData.push(view.createPickerRow("Red", availableColors[1]));
-  pickerData.push(view.createPickerRow("White", availableColors[2]));
-  picker.add(pickerData);
+  setupEnabledColorsPickerSource(picker);
 
   const label = view.createLeftLabel("Enabled Color", 5);
 
   container.add(label);
   container.add(picker);
+
+  return container;
+}
+
+function setupEnabledColorsPickerSource(picker) {
+  const pickerData = [];
+  const availableColors = [];
+  if (settings.laserlineStyle == ScanditCore.LaserlineViewfinderStyle.Legacy) {
+    availableColors.push(new ScanditCore.LaserlineViewfinder(ScanditCore.LaserlineViewfinderStyle.Legacy).enabledColor);
+    availableColors.push(ScanditCore.Color.fromHex("#ff0000"));
+    availableColors.push(ScanditCore.Color.fromHex("#ffffff"));
+
+    pickerData.push(view.createPickerRow("Default", availableColors[0]));
+    pickerData.push(view.createPickerRow("Red", availableColors[1]));
+    pickerData.push(view.createPickerRow("White", availableColors[2]));
+  }
+  else {
+    availableColors.push(new ScanditCore.LaserlineViewfinder(ScanditCore.LaserlineViewfinderStyle.Animated).enabledColor);
+    availableColors.push(ScanditCore.Color.fromHex("#2ec1ce"));
+    availableColors.push(ScanditCore.Color.fromHex("#ff0000"));
+
+    pickerData.push(view.createPickerRow("Default", availableColors[0]));
+    pickerData.push(view.createPickerRow("Blue", availableColors[1]));
+    pickerData.push(view.createPickerRow("Red", availableColors[2]));
+  }
+  picker.add(pickerData);
 
   const selectedIndex = availableColors.findIndex(
     (element) =>
@@ -148,8 +180,37 @@ function setupEnabledColor() {
       settings.instance.laserlineEnabledColor = availableColors[event.rowIndex];
     }
   });
+}
 
-  return container;
+function setupDisabledColorsPickerSource(picker) {
+  const pickerData = [];
+  const availableColors = [];
+  if (settings.laserlineStyle == ScanditCore.LaserlineViewfinderStyle.Legacy) {
+    availableColors.push(new ScanditCore.LaserlineViewfinder(ScanditCore.LaserlineViewfinderStyle.Legacy).disabledColor);
+  }
+  else {
+    availableColors.push(new ScanditCore.LaserlineViewfinder(ScanditCore.LaserlineViewfinderStyle.Animated).disabledColor);
+  }
+  availableColors.push(ScanditCore.Color.fromHex("#2ec1ce"));
+  availableColors.push(ScanditCore.Color.fromHex("#ff0000"));
+
+
+  pickerData.push(view.createPickerRow("Default", availableColors[0]));
+  pickerData.push(view.createPickerRow("Blue", availableColors[1]));
+  pickerData.push(view.createPickerRow("Red", availableColors[2]));
+  picker.add(pickerData);
+
+  const selectedIndex = availableColors.findIndex(
+    (element) =>
+      element.toJSON() == settings.instance.laserlineDisabledColor.toJSON()
+  );
+  picker.setSelectedRow(0, selectedIndex, false);
+  picker.addEventListener("change", function (event) {
+    if (event.rowIndex >= 0) {
+      settings.instance.laserlineDisabledColor =
+        availableColors[event.rowIndex];
+    }
+  });
 }
 
 function setupDisabledColor() {
@@ -160,36 +221,13 @@ function setupDisabledColor() {
     type: Titanium.UI.PICKER_TYPE_PLAIN,
     width: 200,
   });
-  const availableColors = [];
-  availableColors.push(ScanditCore.Color.fromHex("#ffffff"));
-  availableColors.push(ScanditCore.Color.fromHex("#2ec1ce"));
-  availableColors.push(ScanditCore.Color.fromHex("#ff0000"));
 
-  const pickerData = [];
-  pickerData.push(view.createPickerRow("Default", availableColors[0]));
-  pickerData.push(
-    view.createPickerRow("Blue (Scandit Blue)", availableColors[1])
-  );
-  pickerData.push(view.createPickerRow("Red", availableColors[2]));
-  picker.add(pickerData);
-
+  setupDisabledColorsPickerSource(picker);
 
   const label = view.createLeftLabel("Disabled Color", 5);
 
   container.add(label);
   container.add(picker);
-
-  const selectedIndex = availableColors.findIndex(
-    (element) =>
-       element.toJSON() == settings.instance.laserlineDisabledColor.toJSON()
-  );
-  picker.setSelectedRow(0, selectedIndex, false);
-  picker.addEventListener("change", function (event) {
-    if (event.rowIndex >= 0) {
-      settings.instance.laserlineDisabledColor =
-        availableColors[event.rowIndex];
-    }
-  });
 
   return container;
 }
