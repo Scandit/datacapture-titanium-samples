@@ -1,4 +1,4 @@
-<ns0:app xmlns:ns0="http://ti.appcelerator.org" xmlns:ns1="http://schemas.android.com/apk/res/android">
+<ti:app xmlns:android="http://schemas.android.com/apk/res/android" xmlns:ti="http://ti.appcelerator.org">
   <id>com.scandit.barcodecapturesimplesample</id>
   <name>BCSimple</name>
   <version>1.0</version>
@@ -10,7 +10,7 @@
   <fullscreen>false</fullscreen>
   <navbar-hidden>false</navbar-hidden>
   <analytics>true</analytics>
-  <guid>f81cd5db-a05e-46db-9000-f899ebc871d2</guid>
+  <guid>1a943e95-451c-4c26-88ff-8ae529f1c312</guid>
   <property name="ti.ui.defaultunit" type="string">dp</property>
   <property name="run-on-main-thread" type="bool">true</property>
   <ios>
@@ -46,21 +46,20 @@
     </plist>
   </ios>
   <android>
-    <manifest ns1:versionCode="1">
-      <uses-sdk ns1:minSdkVersion="21" ns1:targetSdkVersion="29" />
+    <manifest android:versionCode="1">
+      <application android:theme="@style/Theme.Titanium.DayNight" />
+      <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
     </manifest>
   </android>
   <modules>
-    <module platform="commonjs">ti.cloud</module>
     </modules>
   <deployment-targets>
     <target device="android">true</target>
     <target device="ipad">true</target>
     <target device="iphone">true</target>
   </deployment-targets>
-  <sdk-version>9.3.0.GA</sdk-version>
+  <sdk-version>10.1.0.GA</sdk-version>
   <plugins>
-    <plugin version="1.0">ti.alloy</plugin>
+    <plugin version="1.16.4">ti.alloy</plugin>
   </plugins>
-  <property name="appc-app-id" type="string">606401661a5e2d1873799884</property>
-</ns0:app>
+</ti:app>

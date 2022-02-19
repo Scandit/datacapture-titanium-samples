@@ -467,6 +467,8 @@ class SettingsManager {
       new ScanditCore.NumberWithUnit(newValue, this.pointOfInterestX_Unit),
       this._pointOfInterest.y
     );
+
+    this._dataCaptureView.pointOfInterest = this._pointOfInterest;
   }
 
   get pointOfInterestX_Unit() {
@@ -478,6 +480,8 @@ class SettingsManager {
       new ScanditCore.NumberWithUnit(this.pointOfInterestX_Value, newValue),
       this._pointOfInterest.y
     );
+
+    this._dataCaptureView.pointOfInterest = this._pointOfInterest;
   }
 
   get pointOfInterestY_Value() {
@@ -489,6 +493,8 @@ class SettingsManager {
       this._pointOfInterest.x,
       new ScanditCore.NumberWithUnit(newValue, this.pointOfInterestY_Unit)
     );
+
+    this._dataCaptureView.pointOfInterest = this._pointOfInterest;
   }
 
   get pointOfInterestY_Unit() {
@@ -500,6 +506,8 @@ class SettingsManager {
       this._pointOfInterest.x,
       new ScanditCore.NumberWithUnit(this.pointOfInterestY_Value, newValue)
     );
+
+    this._dataCaptureView.pointOfInterest = this._pointOfInterest;
   }
 
   get pointOfInterest() {
