@@ -847,6 +847,7 @@ class SettingsManager {
 
   set currentRectangularViewFinderSizeSpecification(newValue) {
     this._currentRectangularViewFinderSizeSpecification = newValue;
+    this.updateRectangularViewfinderSize();
   }
 
   get rectangularViewfinderWidth() {
@@ -855,6 +856,7 @@ class SettingsManager {
 
   set rectangularViewfinderWidth(newValue) {
     this._rectangularViewfinderWidth = newValue;
+    this.updateRectangularViewfinderSize();
   }
 
   get rectangularViewfinderHeightAspect() {
@@ -863,6 +865,7 @@ class SettingsManager {
 
   set rectangularViewfinderHeightAspect(newValue) {
     this._rectangularViewfinderHeightAspect = newValue;
+    this.updateRectangularViewfinderSize();
   }
 
   get rectangularViewfinderHeight() {
@@ -871,6 +874,7 @@ class SettingsManager {
 
   set rectangularViewfinderHeight(newValue) {
     this._rectangularViewfinderHeight = newValue;
+    this.updateRectangularViewfinderSize();
   }
 
   get rectangularViewfinderWidthAspect() {
@@ -879,6 +883,7 @@ class SettingsManager {
 
   set rectangularViewfinderWidthAspect(newValue) {
     this._rectangularViewfinderWidthAspect = newValue;
+    this.updateRectangularViewfinderSize();
   }
 
   get rectangularViewfinderShorterDimension() {
@@ -887,6 +892,7 @@ class SettingsManager {
 
   set rectangularViewfinderShorterDimension(newValue) {
     this._rectangularViewfinderShorterDimension = newValue;
+    this.updateRectangularViewfinderSize();
   }
 
   get rectangularViewfinderShorterDimension_Aspect() {
@@ -895,6 +901,7 @@ class SettingsManager {
 
   set rectangularViewfinderShorterDimension_Aspect(newValue) {
     this._rectangularViewfinderShorterDimensionAspect = newValue;
+    this.updateRectangularViewfinderSize();
   }
 
   updateRectangularViewfinderSize() {

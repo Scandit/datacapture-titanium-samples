@@ -68,8 +68,6 @@ const onResume = function () {
 const onClose = function () {
   currentWindow.removeEventListener("focus", onResume);
   currentWindow.removeEventListener("close", onClose);
-
-  settings.instance.updateRectangularViewfinderSize();
 };
 
 function setupStyle() {
