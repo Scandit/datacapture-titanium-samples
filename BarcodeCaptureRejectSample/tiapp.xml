@@ -50,7 +50,7 @@
   <android>
     <manifest android:versionCode="1">
       <application android:theme="@style/Theme.Titanium.DayNight" />
-      <uses-sdk android:minSdkVersion="24" android:targetSdkVersion="29" />
+      <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="29" />
     </manifest>
   </android>
   <modules>
