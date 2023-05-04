@@ -45,7 +45,7 @@ const barcodeCapture = ScanditBarcode.BarcodeCapture.forContext(context, setting
 
 // Register a listener to get informed whenever a new barcode got recognized.
 barcodeCapture.addListener({
-    didScan: (barcodeCapture, session, _) => {
+    didScan: (mode, session, _) => {
         const barcode = session.newlyRecognizedBarcodes[0];
         const symbology = new ScanditBarcode.SymbologyDescription(barcode.symbology);
 
@@ -56,13 +56,13 @@ barcodeCapture.addListener({
             title: 'Scan Result',
             persistent: true
         });
-        dialog.addEventListener('click', function (e) {
-            barcodeCapture.isEnabled = true;
+        dialog.addEventListener('click', function (_e) {
+            mode.isEnabled = true;
         });
         dialog.show();
 
         // Disable barcode capture until dialog is dismissed.
-        barcodeCapture.isEnabled = false;
+        mode.isEnabled = false;
     }
 });
 
@@ -93,14 +93,14 @@ const openScanner = () => {
     dataCaptureView.addToContainer(window);
 
     // Add listener that opens camera once window is open.
-    window.addEventListener('open', function (e) {
+    window.addEventListener('open', function (_e) {
         // Switch camera on to start streaming frames and enable the barcode capture mode.
         // The camera is started asynchronously and will take some time to completely turn on.
         camera.switchToDesiredState(ScanditCore.FrameSourceState.On);
         barcodeCapture.isEnabled = true;
     });
 
-    window.addEventListener('close', function (e) {
+    window.addEventListener('close', function (_e) {
         // Switch camera on to start streaming frames and enable the barcode capture mode.
         // The camera is started asynchronously and will take some time to completely turn on.
         camera.switchToDesiredState(ScanditCore.FrameSourceState.Off);

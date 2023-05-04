@@ -7,12 +7,12 @@ const numberWithUnit = require("/common/value_with_measure_view");
 exports.openView = () => {
   const window = view.createWindow("Scan Area");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     window.add(setupScanAreaList());
     window.add(setupScanAreaGuidesSwitch());
   });
 
-  window.addEventListener("focus", function (e) {
+  window.addEventListener("focus", function (_e) {
     loadScanAreaMargins();
   });
 
@@ -155,7 +155,7 @@ function setupScanAreaGuidesSwitch() {
   container.add(label);
   container.add(guidesSwitch);
 
-  guidesSwitch.addEventListener("change", function (e) {
+  guidesSwitch.addEventListener("change", function (_e) {
     settings.instance.shouldShowScanAreaGuides = guidesSwitch.value;
   });
 

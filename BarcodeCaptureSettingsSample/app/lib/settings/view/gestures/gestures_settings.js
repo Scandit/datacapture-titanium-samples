@@ -5,7 +5,7 @@ const settings = require("/model/settings_manager");
 exports.openView = () => {
   const window = view.createWindow("Gestures");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     window.add(tapToFocusControl());
     window.add(swipeToZoomControl());
   });
@@ -28,7 +28,7 @@ function tapToFocusControl() {
   container.add(label);
   container.add(switchControl);
 
-  switchControl.addEventListener("change", function (e) {
+  switchControl.addEventListener("change", function (_e) {
     settings.instance.tapToFocusEnabled = switchControl.value;
   });
 
@@ -50,7 +50,7 @@ function swipeToZoomControl() {
   container.add(label);
   container.add(switchControl);
 
-  switchControl.addEventListener("change", function (e) {
+  switchControl.addEventListener("change", function (_e) {
     settings.instance.swipeToZoomEnabled = switchControl.value;
   });
 

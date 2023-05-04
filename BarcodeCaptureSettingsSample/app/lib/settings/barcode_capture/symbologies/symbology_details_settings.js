@@ -11,7 +11,7 @@ exports.openView = (payload = {}) => {
 
   const window = view.createWindow(payload._readableName);
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     const symbologySettingsView = new SymbologySettingsView(payload);
     window.add(symbologySettingsView.enableToggleView);
     var currentTop = 65;
@@ -65,7 +65,7 @@ class SymbologySettingsView {
 
     this._toggleView.add(scaleContentViewLabel);
     this._toggleView.add(enableToggle);
-    enableToggle.addEventListener("change", function (e) {
+    enableToggle.addEventListener("change", function (_e) {
       settings.instance.enableSymbology(
         currentSymbologySettings,
         enableToggle.value
@@ -94,7 +94,7 @@ class SymbologySettingsView {
       });
       this._invertibleColorView.add(colorInvertedLabel);
       this._invertibleColorView.add(invertibleColorToggle);
-      invertibleColorToggle.addEventListener("change", function (e) {
+      invertibleColorToggle.addEventListener("change", function (_e) {
         settings.instance.setColorInvertedEnabled(
           currentSymbologySettings,
           invertibleColorToggle.value

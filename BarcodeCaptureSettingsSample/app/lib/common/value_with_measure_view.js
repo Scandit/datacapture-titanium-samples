@@ -17,7 +17,7 @@ exports.openView = (payload) => {
 
   const window = view.createWindow(valueHandler.viewTitle);
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     const container = setupValueFields();
     setupMeasureUnitList();
 

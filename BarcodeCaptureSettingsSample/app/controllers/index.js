@@ -12,9 +12,8 @@ const handleDidScan = (barcodeCapture, session, _) => {
   Ti.API.info(`Scanned: ${barcode.data} (${symbology.readableName})`);
 
   if (settings.instance.continuousScanningEnabled) {
-    var t = setTimeout(() => {
+    setTimeout(() => {
       dialog.hide();
-      t = null;
     }, 1000);
   } else {
      // Disable barcode capture until dialog is dismissed.
@@ -56,7 +55,7 @@ const handleDidScan = (barcodeCapture, session, _) => {
     title: "Scan Result",
     persistent: true,
   });
-  dialog.addEventListener("click", (e) => {
+  dialog.addEventListener("click", (_e) => {
     if(!settings.instance.continuousScanningEnabled) {
       // Enable barcode capture only if continuous scan is not enabled
       barcodeCapture.isEnabled = true;
@@ -83,11 +82,11 @@ const openScanner = () => {
   settings.instance.barcodeCapture.isEnabled = true;
 };
 
-$.scan_window.addEventListener("open", function (e) {
+$.scan_window.addEventListener("open", function (_e) {
   permissions.getCameraPermissions(openScanner);
 });
 
-$.scan_window.addEventListener("focus", function (e) {
+$.scan_window.addEventListener("focus", function (_e) {
   settings.instance.camera.switchToDesiredState(
     ScanditCore.FrameSourceState.On
   );
@@ -97,7 +96,7 @@ if (OS_IOS) {
   const settingsButton = Titanium.UI.createButton({
     title: "Settings",
   });
-  settingsButton.addEventListener("click", function (e) {
+  settingsButton.addEventListener("click", function (_e) {
     openSettings();
   });
   $.scan_window.rightNavButton = settingsButton;

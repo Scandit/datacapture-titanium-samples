@@ -5,7 +5,7 @@ const settings = require("/model/settings_manager");
 exports.openView = () => {
   const window = view.createWindow("Feedback");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     window.add(initSound());
     window.add(initVibration());
   });
@@ -28,7 +28,7 @@ function initSound() {
   soundContainer.add(label);
   soundContainer.add(soundSwitch);
 
-  soundSwitch.addEventListener("change", function (e) {
+  soundSwitch.addEventListener("change", function (_e) {
     settings.instance.soundEnabled = soundSwitch.value;
   });
 
@@ -50,7 +50,7 @@ function initVibration() {
   vibrationContainer.add(label);
   vibrationContainer.add(vibrationSwitch);
 
-  vibrationSwitch.addEventListener("change", function (e) {
+  vibrationSwitch.addEventListener("change", function (_e) {
     settings.instance.vibrationEnabled = vibrationSwitch.value;
   });
 

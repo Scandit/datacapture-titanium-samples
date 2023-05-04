@@ -11,7 +11,7 @@ let window = null;
 exports.openView = () => {
   window = view.createWindow("Viewfinder");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     window.add(setupTypeView());
     window.add(itemsContainer);
     setupViewfinderView();
@@ -72,8 +72,8 @@ function setupViewfinderView() {
     return;
   }
   if (settings.instance.currentViewfinder == settings.ViewfinderTypes.Aimer) {
-    const view = new aimerViewfinder.AimerViewfinderSettings();
-    itemsContainer.add(view);
+    const viewFinderSettingsView = new aimerViewfinder.AimerViewfinderSettings();
+    itemsContainer.add(viewFinderSettingsView);
   } else if (
     settings.instance.currentViewfinder == settings.ViewfinderTypes.Laserline
   ) {

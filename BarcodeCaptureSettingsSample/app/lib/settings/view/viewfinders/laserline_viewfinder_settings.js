@@ -7,7 +7,7 @@ exports.LaserlineViewfinderSettings = function (window) {
   window.removeEventListener("focus", updateWidthValue);
   window.addEventListener("focus", updateWidthValue);
 
-  const view = Ti.UI.createView({
+  const containerView = Ti.UI.createView({
     height: Titanium.UI.SIZE,
     horizontalWrap: false,
     layout: "vertical",
@@ -15,7 +15,7 @@ exports.LaserlineViewfinderSettings = function (window) {
     top: 10,
   });
 
-  view.add(
+  containerView.add(
     Ti.UI.createLabel({
       color: "#000",
       text: "Laserline",
@@ -26,12 +26,12 @@ exports.LaserlineViewfinderSettings = function (window) {
     })
   );
 
-  view.add(setupStyle());
-  view.add(setupWidthView());
-  view.add(colorsContainer);
+  containerView.add(setupStyle());
+  containerView.add(setupWidthView());
+  containerView.add(colorsContainer);
   setupColorsContainer();
 
-  return view;
+  return containerView;
 };
 
 function setupStyle() {
@@ -72,7 +72,7 @@ let widthValue = null;
 
 function setupWidthView() {
   const container = view.createContainerView(0, 60, 0);
-  container.addEventListener("click", (event) => {
+  container.addEventListener("click", (_event) => {
     numberWithUnit.openView(new WidthValueSetter());
   });
 

@@ -1,4 +1,4 @@
-<ti:app xmlns:android="http://schemas.android.com/apk/res/android" xmlns:ti="http://ti.appcelerator.org">
+<ti:app xmlns:android="http://schemas.android.com/apk/res/android" xmlns:ti="http://ti.appcelerator.org" xmlns:tools="http://schemas.android.com/tools">
   <id>com.scandit.barcodecapturerejectsample</id>
   <name>BCReject</name>
   <version>1.0</version>
@@ -49,8 +49,8 @@
   </ios>
   <android>
     <manifest android:versionCode="1">
-      <application android:theme="@style/Theme.Titanium.DayNight" />
-      <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="29" />
+      <application android:theme="@style/Theme.Titanium.DayNight" android:usesCleartextTraffic="false" tools:replace="android:usesCleartextTraffic" />
+      <uses-sdk android:minSdkVersion="24" android:targetSdkVersion="29" />
     </manifest>
   </android>
   <modules>
@@ -60,7 +60,7 @@
     <target device="ipad">true</target>
     <target device="iphone">true</target>
   </deployment-targets>
-  <sdk-version>10.1.0.GA</sdk-version>
+  <sdk-version>11.1.1.GA</sdk-version>
   <plugins>
     <plugin version="1.16.4">ti.alloy</plugin>
   </plugins>

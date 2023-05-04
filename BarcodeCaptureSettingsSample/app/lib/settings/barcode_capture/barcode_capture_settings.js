@@ -9,7 +9,7 @@ const codeDuplicateFilter = require("/settings/barcode_capture/code_duplicate_fi
 exports.openView = () => {
   const window = view.createWindow("Barcode Capture");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     var settingsView = new BarcodeCaptureSettingsView();
     window.add(settingsView.barcodeCaptureSettingsList);
   });

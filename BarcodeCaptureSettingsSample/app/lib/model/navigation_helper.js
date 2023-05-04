@@ -18,12 +18,12 @@ export function openWindow(window) {
     }
   });
 
-  title.addEventListener('dblclick', function (e) {
+  title.addEventListener('dblclick', function (_e) {
     popToRoot();
   });
 
   if (OS_ANDROID) {
-    window.addEventListener('open', function (e) {
+    window.addEventListener('open', function (_e) {
       window.activity.actionBar.customView = title;
       window.activity.actionBar.setDisplayShowTitleEnabled(false);
       window.activity.actionBar.displayHomeAsUp = !isInitialWindow;

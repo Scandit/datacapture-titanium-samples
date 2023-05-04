@@ -23,13 +23,13 @@ locationSelectionConfigurationView.height = Titanium.UI.SIZE;
 exports.openView = () => {
   const window = view.createWindow("Location Selection");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     createView();
     window.add(locationSelectionListView);
     window.add(locationSelectionConfigurationView);
   });
 
-  window.addEventListener("focus", function (e) {
+  window.addEventListener("focus", function (_e) {
     loadLocationSelections();
     setupConfigView(getCurrentLocationSelection());
   });
@@ -146,7 +146,7 @@ function setupRadiusLocationConfigView() {
   );
   radiusConfigContainer.add(sizeLabel);
   radiusConfigContainer.add(sizeValueLabel);
-  radiusConfigContainer.addEventListener("click", (event) => {
+  radiusConfigContainer.addEventListener("click", (_event) => {
     numberWithUnit.openView(new RadiusSizeValueSetter());
   });
 }
@@ -271,7 +271,7 @@ function setupWidthAndHeightViews(containerView) {
   );
   widthContainer.add(widthLabel);
   widthContainer.add(widthValueLabel);
-  widthContainer.addEventListener("click", (event) => {
+  widthContainer.addEventListener("click", (_event) => {
     numberWithUnit.openView(new RectangularWidthValueSetter());
   });
 
@@ -293,7 +293,7 @@ function setupWidthAndHeightViews(containerView) {
   );
   heightContainer.add(heightLabel);
   heightContainer.add(heightValueLabel);
-  heightContainer.addEventListener("click", (event) => {
+  heightContainer.addEventListener("click", (_event) => {
     numberWithUnit.openView(new RectangularHeightValueSetter());
   });
 }
@@ -317,7 +317,7 @@ function setupWidthHeightAspectViews(containerView) {
   );
   widthContainer.add(widthLabel);
   widthContainer.add(widthValueLabel);
-  widthContainer.addEventListener("click", (event) => {
+  widthContainer.addEventListener("click", (_event) => {
     numberWithUnit.openView(new RectangularWidthValueSetter());
   });
 
@@ -368,7 +368,7 @@ function setupHeightWidthAspectViews(containerView) {
   );
   heightContainer.add(heightLabel);
   heightContainer.add(heightValueLabel);
-  heightContainer.addEventListener("click", (event) => {
+  heightContainer.addEventListener("click", (_event) => {
     numberWithUnit.openView(new RectangularHeightValueSetter());
   });
 
@@ -400,8 +400,8 @@ function setupHeightWidthAspectViews(containerView) {
   widthAspectContainer.add(widthAspectValue);
 }
 
-function addLocationConfigView(view) {
-  locationSelectionConfigurationView.add(view);
+function addLocationConfigView(configView) {
+  locationSelectionConfigurationView.add(configView);
   locationSelectionConfigurationView.visible = true;
 }
 

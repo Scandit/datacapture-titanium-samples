@@ -7,14 +7,14 @@ const numberWithUnit = require("/common/value_with_measure_view");
 exports.openView = () => {
   const window = view.createWindow("Logo");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     window.add(setupAnchorView());
     setupAnchorOffset();
     window.add(pointXContainer);
     window.add(pointYContainer);
   });
 
-  window.addEventListener("focus", function (e) {
+  window.addEventListener("focus", function (_e) {
     updateValues();
   });
 
@@ -63,11 +63,11 @@ let yValueLabel = null;
 
 function setupAnchorOffset() {
   pointXContainer = view.createContainerView(65, 60, 0);
-  pointXContainer.addEventListener("click", (event) => {
+  pointXContainer.addEventListener("click", (_event) => {
     numberWithUnit.openView(new XValueSetter());
   });
   pointYContainer = view.createContainerView(125, 60, 0);
-  pointYContainer.addEventListener("click", (event) => {
+  pointYContainer.addEventListener("click", (_event) => {
     numberWithUnit.openView(new YValueSetter());
   });
 

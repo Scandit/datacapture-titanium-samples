@@ -9,7 +9,7 @@ let brushContainer = view.createContainerView(5, 60, 0);
 exports.openView = () => {
   const window = view.createWindow("Overlay");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     window.add(brushContainer);
     setupBrushView();
     window.add(setupOverlayStyle());

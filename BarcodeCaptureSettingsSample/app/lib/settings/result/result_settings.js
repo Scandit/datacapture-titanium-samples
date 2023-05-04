@@ -5,7 +5,7 @@ const view = require("/common/view_helper");
 exports.openView = () => {
   const window = view.createWindow("Result");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     window.add(continousScanSwitch());
   });
 
@@ -27,7 +27,7 @@ function continousScanSwitch() {
   container.add(label);
   container.add(switchControl);
 
-  switchControl.addEventListener("change", function (e) {
+  switchControl.addEventListener("change", function (_e) {
     settings.instance.continuousScanningEnabled = switchControl.value;
   });
 

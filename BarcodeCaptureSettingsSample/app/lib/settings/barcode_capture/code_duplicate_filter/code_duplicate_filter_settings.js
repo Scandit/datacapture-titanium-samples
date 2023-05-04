@@ -5,7 +5,7 @@ const settings = require("/model/settings_manager");
 exports.openView = () => {
   const window = view.createWindow("Code Duplicate Filter");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     window.add(setupView());
   });
 

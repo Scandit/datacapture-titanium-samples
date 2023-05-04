@@ -11,7 +11,7 @@ const viewfinders = require("/settings/view/viewfinders/viewfinders_settings");
 exports.openView = () => {
   const window = view.createWindow("View");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     window.add(setupList());
   });
 
@@ -29,7 +29,7 @@ function setupList() {
     { title: "Controls", utils: controls },
   ];
 
-  listView = Ti.UI.createListView({
+  var listView = Ti.UI.createListView({
     separatorColor: "#e8e8e8",
   });
   const sections = [];

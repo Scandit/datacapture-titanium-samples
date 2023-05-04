@@ -5,7 +5,7 @@ const settings = require("/model/settings_manager");
 exports.openView = () => {
   const window = view.createWindow("Controls");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     window.add(torchControl());
   });
 
@@ -27,7 +27,7 @@ function torchControl() {
   container.add(label);
   container.add(switchControl);
 
-  switchControl.addEventListener("change", function (e) {
+  switchControl.addEventListener("change", function (_e) {
     settings.instance.isTorchControlEnabled = switchControl.value;
   });
 

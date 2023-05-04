@@ -48,10 +48,10 @@ listView.addEventListener("itemclick", (event) => {
   settingsItems[event.itemIndex].utils.openView();
 });
 
-exports.openSettingsList = (data = {}) => {
+exports.openSettingsList = (_data = {}) => {
   const window = view.createWindow("Settings");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     window.add(listView);
   });
 

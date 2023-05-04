@@ -7,12 +7,12 @@ const view = require("/common/view_helper");
 exports.openView = () => {
   const window = view.createWindow("Symbologies");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     window.add(actionButtonsContainer);
     window.add(symbologiesList);
   });
 
-  window.addEventListener("focus", function (e) {
+  window.addEventListener("focus", function (_e) {
     loadSymbologies();
   });
 
@@ -92,7 +92,7 @@ var enableAllButton = Titanium.UI.createButton({
   left: 5,
   color: "white"
 });
-enableAllButton.addEventListener("click", (e) => {
+enableAllButton.addEventListener("click", (_e) => {
   settings.instance.toggleAllSymbologies(true);
   loadSymbologies();
 });
@@ -104,7 +104,7 @@ var disableAllButton = Titanium.UI.createButton({
   right: 5,
   color: "white"
 });
-disableAllButton.addEventListener("click", (e) => {
+disableAllButton.addEventListener("click", (_e) => {
   settings.instance.toggleAllSymbologies(false);
   loadSymbologies();
 });

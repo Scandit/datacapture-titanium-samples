@@ -6,7 +6,7 @@ const view = require("/common/view_helper");
 exports.openView = () => {
   const window = view.createWindow("Camera Settings");
 
-  window.addEventListener("open", function (e) {
+  window.addEventListener("open", function (_e) {
     var cameraSettingsView = new CameraSettingsView();
     window.add(cameraSettingsView.cameraPositionListView);
     window.add(cameraSettingsView.torchStateContainer);
@@ -53,7 +53,7 @@ class CameraSettingsView {
 
     const cameraPositions = Object.entries(ScanditCore.CameraPosition)
       .filter(
-        ([key, value]) => value !== ScanditCore.CameraPosition.Unspecified
+        ([_key, value]) => value !== ScanditCore.CameraPosition.Unspecified
       )
       .map(([key, value]) => ({ title: key, value }));
 
@@ -204,7 +204,7 @@ class CameraSettingsView {
     this._torchStateContainer.add(torchStateLabel);
     this._torchStateContainer.add(desiredTorchStateSwitch);
 
-    desiredTorchStateSwitch.addEventListener("change", function (e) {
+    desiredTorchStateSwitch.addEventListener("change", function (_e) {
       if (desiredTorchStateSwitch.value) {
         settings.instance.camera.desiredTorchState = ScanditCore.TorchState.On;
       } else {

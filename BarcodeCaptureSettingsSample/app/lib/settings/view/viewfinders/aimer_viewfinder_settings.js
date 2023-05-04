@@ -6,7 +6,7 @@ exports.AimerViewfinderSettings = function () {
   const frameColorView = setupFrameColorView();
   const dotColorView = setupDotColorView();
 
-  const view = Ti.UI.createView({
+  const containerView = Ti.UI.createView({
     height: Titanium.UI.SIZE,
     horizontalWrap: false,
     layout: "vertical",
@@ -14,7 +14,7 @@ exports.AimerViewfinderSettings = function () {
     top: 10,
   });
 
-  view.add(
+  containerView.add(
     Ti.UI.createLabel({
       color: "#000",
       text: "Aimer",
@@ -24,10 +24,10 @@ exports.AimerViewfinderSettings = function () {
       left: 5,
     })
   );
-  view.add(frameColorView);
-  view.add(dotColorView);
+  containerView.add(frameColorView);
+  containerView.add(dotColorView);
 
-  return view;
+  return containerView;
 };
 
 function setupFrameColorView() {

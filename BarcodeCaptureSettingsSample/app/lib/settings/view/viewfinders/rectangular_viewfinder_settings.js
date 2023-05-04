@@ -10,7 +10,7 @@ exports.RectangularViewfinderSettings = function (window) {
   window.addEventListener("focus", onResume);
   window.addEventListener("close", onClose);
 
-  const view = Ti.UI.createView({
+  const containerView = Ti.UI.createView({
     height: Titanium.UI.SIZE,
     horizontalWrap: false,
     layout: "vertical",
@@ -18,7 +18,7 @@ exports.RectangularViewfinderSettings = function (window) {
     top: 10,
   });
 
-  view.add(
+  containerView.add(
     Ti.UI.createLabel({
       color: "#000",
       text: "Rectangular",
@@ -30,11 +30,11 @@ exports.RectangularViewfinderSettings = function (window) {
   );
 
   // Add all the required elements
-  view.add(setupStyle());
-  view.add(setupLineStyle());
-  view.add(setupDimmingView());
-  view.add(setupColor());
-  view.add(setupAnimationView());
+  containerView.add(setupStyle());
+  containerView.add(setupLineStyle());
+  containerView.add(setupDimmingView());
+  containerView.add(setupColor());
+  containerView.add(setupAnimationView());
 
   const sizeSpecificationContainer = Ti.UI.createView({
     height: Titanium.UI.SIZE,
@@ -44,10 +44,10 @@ exports.RectangularViewfinderSettings = function (window) {
     top: 5,
   });
 
-  view.add(setupSizeSpecificationView(sizeSpecificationContainer));
-  view.add(sizeSpecificationContainer);
+  containerView.add(setupSizeSpecificationView(sizeSpecificationContainer));
+  containerView.add(sizeSpecificationContainer);
 
-  return view;
+  return containerView;
 };
 
 const onResume = function () {
@@ -236,7 +236,7 @@ function setupAnimationView() {
   animationContainer.add(label);
   animationContainer.add(animationSwitch);
 
-  animationSwitch.addEventListener("change", (e) => {
+  animationSwitch.addEventListener("change", (_e) => {
     settings.instance.isAnimationEnabled = animationSwitch.value;
     loopingSwith.value = settings.instance.isLooping;
     if (animationSwitch.value) {
@@ -259,7 +259,7 @@ function setupAnimationView() {
   loopingContainer.add(loopingLabel);
   loopingContainer.add(loopingSwith);
 
-  loopingSwith.addEventListener("change", (e) => {
+  loopingSwith.addEventListener("change", (_e) => {
     settings.instance.isLooping = loopingSwith.value;
   });
 
@@ -341,11 +341,11 @@ let heightValueLabel = null;
 
 function setupWidthAndHeightViews(sizeSpecificationContainer) {
   const widthContainer = view.createContainerView(0, 60, 0);
-  widthContainer.addEventListener("click", (event) => {
+  widthContainer.addEventListener("click", (_event) => {
     numberWithUnit.openView(new WidthValueSetter());
   });
   const heightContainer = view.createContainerView(0, 60, 0);
-  heightContainer.addEventListener("click", (event) => {
+  heightContainer.addEventListener("click", (_event) => {
     numberWithUnit.openView(new HeightValueSetter());
   });
 
@@ -415,7 +415,7 @@ class HeightValueSetter {
 function setupWidthAndHeightAspectViews(sizeSpecificationContainer) {
   heightValueLabel = null;
   const widthContainer = view.createContainerView(0, 60, 0);
-  widthContainer.addEventListener("click", (event) => {
+  widthContainer.addEventListener("click", (_event) => {
     numberWithUnit.openView(new WidthValueSetter());
   });
 
@@ -453,7 +453,7 @@ function setupWidthAndHeightAspectViews(sizeSpecificationContainer) {
 function setupHeightAndWithAspectViews(sizeSpecificationContainer) {
   widthValueLabel = null;
   const heightContainer = view.createContainerView(0, 60, 0);
-  heightContainer.addEventListener("click", (event) => {
+  heightContainer.addEventListener("click", (_event) => {
     numberWithUnit.openView(new HeightValueSetter());
   });
 
