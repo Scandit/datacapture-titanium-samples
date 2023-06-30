@@ -1,0 +1,11 @@
+def projectPath = project.projectDir.path
+allprojects {
+    def reposGradleFile = file('../../../../../../common/frameworks.gradle')
+    if (reposGradleFile.exists()) {
+        apply from: reposGradleFile.path
+    } else {
+        apply from: file("$projectPath/../../../platform/android/frameworks.gradle")
+    }
+
+    repositories repos
+}
