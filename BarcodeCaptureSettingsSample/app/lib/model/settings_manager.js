@@ -264,6 +264,8 @@ class SettingsManager {
     if (this.locationSelection.type == this.radiusLocationSelection) {
       return this.locationSelection.radius.unit;
     }
+
+    return ScanditCore.MeasureUnit.Fraction;
   }
 
   set currentRectangularLocationSizeSpecification(newValue) {
