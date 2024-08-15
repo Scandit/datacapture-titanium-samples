@@ -6,7 +6,9 @@ const navigation = require("/model/navigation_helper");
 const main_settings = require("/settings/main_settings");
 
 const handleDidScan = (barcodeCapture, session, _) => {
-  const barcode = session.newlyRecognizedBarcodes[0];
+  const barcode = session.newlyRecognizedBarcode;
+  if (barcode == null) return;
+  
   const symbology = new ScanditBarcode.SymbologyDescription(barcode.symbology);
 
   Ti.API.info(`Scanned: ${barcode.data} (${symbology.readableName})`);

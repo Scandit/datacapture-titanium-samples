@@ -47,7 +47,9 @@ const barcodeCapture = ScanditBarcode.BarcodeCapture.forContext(context, setting
 // Register a listener to get informed whenever a new barcode got recognized.
 barcodeCapture.addListener({
     didScan: (mode, session, _) => {
-        const barcode = session.newlyRecognizedBarcodes[0];
+        const barcode = session.newlyRecognizedBarcode;
+        if (barcode == null) return;
+        
         const symbology = new ScanditBarcode.SymbologyDescription(barcode.symbology);
 
         // The `alert` dialog displays the barcode information and will re-enable barcode capture once clicked.
