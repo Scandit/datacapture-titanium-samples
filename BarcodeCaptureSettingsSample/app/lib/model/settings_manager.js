@@ -20,14 +20,14 @@ class SettingsManager {
     this._torchControl = null;
     this._currentViewFinder = ViewfinderTypes.None;
     this._currentRectangularViewFinderSizeSpecification =
-      SizeSpecification.WidthAndHeight;
+      SizeSpecification.ShorterDimensionAndAspectRatio;
 
     const rectangularViewfinder = new ScanditCore.RectangularViewfinder();
 
     this._rectangularViewfinderWidth =
-      rectangularViewfinder.sizeWithUnitAndAspect.widthAndHeight.width;
+      rectangularViewfinder.sizeWithUnitAndAspect.widthAndHeight?.width ?? 0.0;
     this._rectangularViewfinderHeight =
-      rectangularViewfinder.sizeWithUnitAndAspect.widthAndHeight.height;
+      rectangularViewfinder.sizeWithUnitAndAspect.widthAndHeight?.height ?? 0.0;
     this._rectangularViewfinderHeightAspect = 0.0;
     this._rectangularViewfinderWidthAspect = 0.0;
     this._rectangularViewfinderShorterDimension = 1.0;
@@ -707,8 +707,6 @@ class SettingsManager {
     this._currentViewFinder = newValue;
     if (newValue == ViewfinderTypes.Aimer) {
       this._overlay.viewfinder = new ScanditCore.AimerViewfinder();
-    } else if (newValue == ViewfinderTypes.Laserline) {
-      this._overlay.viewfinder = new ScanditCore.LaserlineViewfinder();
     } else if (newValue == ViewfinderTypes.Rectangular) {
       this._overlay.viewfinder = new ScanditCore.RectangularViewfinder();
     } else {
@@ -730,52 +728,6 @@ class SettingsManager {
 
   set aimerDotColor(newValue) {
     this._overlay.viewfinder.dotColor = newValue;
-  }
-
-  get laserlineStyle() {
-    return this._overlay.viewfinder.style;
-  }
-
-  set laserlineStyle(newValue) {
-    this._overlay.viewfinder = new ScanditCore.LaserlineViewfinder(newValue);
-  }
-
-  get laserLineWidth_Value() {
-    return this._overlay.viewfinder.width.value;
-  }
-
-  set laserLineWidth_Value(newValue) {
-    this._overlay.viewfinder.width = new ScanditCore.NumberWithUnit(
-      newValue,
-      this.laserLineWidth_Unit
-    );
-  }
-
-  get laserLineWidth_Unit() {
-    return this._overlay.viewfinder.width.unit;
-  }
-
-  set laserLineWidth_Unit(newValue) {
-    this._overlay.viewfinder.width = new ScanditCore.NumberWithUnit(
-      this.laserLineWidth_Value,
-      newValue
-    );
-  }
-
-  get laserlineEnabledColor() {
-    return this._overlay.viewfinder.enabledColor;
-  }
-
-  set laserlineEnabledColor(newValue) {
-    this._overlay.viewfinder.enabledColor = newValue;
-  }
-
-  get laserlineDisabledColor() {
-    return this._overlay.viewfinder.disabledColor;
-  }
-
-  set laserlineDisabledColor(newValue) {
-    this._overlay.viewfinder.disabledColor = newValue;
   }
 
   get rectangularViewfinderStyle() {
@@ -953,7 +905,6 @@ class SettingsManager {
 const ViewfinderTypes = {
   None: "None",
   Rectangular: "Rectangular",
-  Laserline: "Laserline",
   Aimer: "Aimer",
 };
 

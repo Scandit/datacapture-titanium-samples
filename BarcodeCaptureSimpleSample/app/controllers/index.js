@@ -49,7 +49,10 @@ barcodeCapture.addListener({
     didScan: (mode, session, _) => {
         const barcode = session.newlyRecognizedBarcode;
         if (barcode == null) return;
-        
+
+        // Disable barcode capture until dialog is dismissed.
+        mode.isEnabled = false;
+
         const symbology = new ScanditBarcode.SymbologyDescription(barcode.symbology);
 
         // The `alert` dialog displays the barcode information and will re-enable barcode capture once clicked.
@@ -63,9 +66,6 @@ barcodeCapture.addListener({
             mode.isEnabled = true;
         });
         dialog.show();
-
-        // Disable barcode capture until dialog is dismissed.
-        mode.isEnabled = false;
     }
 });
 

@@ -3,7 +3,6 @@ const view = require("/common/view_helper");
 const navigation = require("/model/navigation_helper");
 const settings = require("/model/settings_manager");
 const aimerViewfinder = require("/settings/view/viewfinders/aimer_viewfinder_settings");
-const laserlineViewfinder = require("/settings/view/viewfinders/laserline_viewfinder_settings");
 const rectangularViewfinder = require("/settings/view/viewfinders/rectangular_viewfinder_settings");
 
 let window = null;
