@@ -44,11 +44,34 @@ symbologySettings.activeSymbolCounts = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17,
 // Create new barcode capture mode with the settings from above.
 const barcodeCapture = ScanditBarcode.BarcodeCapture.forContext(context, settings);
 
+// By default, every time a barcode is scanned, a sound (if not in silent mode) and a vibration are played.
+// Uncomment the following lines to set a success feedback without sound and vibration.
+barcodeCapture.feedback = { success: new ScanditCore.Feedback(null, null) };
+
 // Register a listener to get informed whenever a new barcode got recognized.
 barcodeCapture.addListener({
     didScan: (mode, session, _) => {
         const barcode = session.newlyRecognizedBarcode;
         if (barcode == null) return;
+
+        // Use the following code to reject barcodes.
+        // By uncommenting the following lines, barcodes not starting with 09: are ignored.
+		// if (!barcode.data.startsWith('09:')) {
+        //     // We temporarily change the brush, used to highlight recognized barcodes, to a transparent brush.
+        //     overlay.brush = ScanditCore.Brush.transparent;
+		// 	return;
+		// }
+        // Otherwise, if the barcode is of interest, we want to use a brush to highlight it.
+        // overlay.brush = new ScanditCore.Brush(
+        //   ScanditCore.Color.fromHex('FFF0'),
+        //   ScanditCore.Color.fromHex('FFFF'),
+        //   3
+        // );
+        // We also want to emit a feedback (vibration and, if enabled, sound).
+        // By default, every time a barcode is scanned, a sound (if not in silent mode) and a vibration are played.
+        // To emit a feedback only when necessary, it is necessary to set a success feedback without sound and
+        // vibration when setting up Barcode Capture.
+		// ScanditCore.Feedback.defaultFeedback.emit();
 
         // Disable barcode capture until dialog is dismissed.
         mode.isEnabled = false;
