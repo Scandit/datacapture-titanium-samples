@@ -7,7 +7,6 @@ const permissions = require('permissions');
 // Your Scandit License key is available via your Scandit SDK web account.
 const licenseKey = '-- ENTER YOUR SCANDIT LICENSE KEY HERE --';
 
-// Create data capture context using your license key.
 const context = ScanditCore.DataCaptureContext.forLicenseKey(licenseKey);
 
 // Use the world-facing (back) camera and set it as the frame source of the context. The camera is off by
@@ -98,10 +97,9 @@ const dataCaptureView = new ScanditCore.DataCaptureView(context);
 
 // Add a barcode capture overlay to the data capture view to render the location of captured barcodes on top of
 // the video preview. This is optional, but recommended for better visual feedback.
-const overlay = ScanditBarcode.BarcodeCaptureOverlay.withBarcodeCaptureForViewWithStyle(
+const overlay = ScanditBarcode.BarcodeCaptureOverlay.withBarcodeCaptureForView(
     barcodeCapture,
-    dataCaptureView,
-    ScanditBarcode.BarcodeCaptureOverlayStyle.Frame);
+    dataCaptureView);
 
 overlay.viewfinder = new ScanditCore.RectangularViewfinder(
   ScanditCore.RectangularViewfinderStyle.Square,
