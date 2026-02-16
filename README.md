@@ -1,5 +1,19 @@
-# Available samples and steps to run the samples
+# Scandit Titanium Samples
 
-To see the currently available samples and how to run them, take a look at our [Run Samples guide](https://docs.scandit.com/data-capture-sdk/titanium/samples/run-samples.html).
+This repository contains samples that show you how use various features of the Scandit Data Capture SDK.
 
-If you want to learn more about the SDK, check out the complete documentation and getting started guides [here](https://docs.scandit.com/data-capture-sdk/titanium/).
+## 01_Single_Scanning_Samples
+
+### Barcode Scanning with Pre-built UI
+
+- **ListBuildingSample** - Build lists by scanning barcodes using SparkScan
+
+### Barcode Scanning with Low-level API
+
+- **BarcodeCaptureSimpleSample** - Simple barcode scanning with the low-level API
+- **BarcodeCaptureRejectSample** - Accept or reject scanned barcodes based on custom logic
+- **BarcodeCaptureSettingsSample** - Configure barcode scanning settings
+
+## Getting Started
+
+Each sample includes its own README with setup and running instructions. To learn more about the SDK, check out the complete [Scandit Data Capture SDK documentation](https://docs.scandit.com/data-capture-sdk/titanium/).

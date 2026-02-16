@@ -2,7 +2,7 @@
     "name": "barcodecapturesimplesample",
     "version": "1.0.0",
     "dependencies": {
-        "scandit-titanium-datacapture-core": "^8.1.1",
-        "scandit-titanium-datacapture-barcode": "^8.1.1"
+        "scandit-titanium-datacapture-core": "^8.2.0",
+        "scandit-titanium-datacapture-barcode": "^8.2.0"
     }
 }
