@@ -95,8 +95,10 @@ barcodeCapture.addListener({
 // camera preview. The view must be connected to the data capture context.
 const dataCaptureView = new ScanditCore.DataCaptureView(context);
 
-// Add a barcode capture overlay to the data capture view to render the location of captured barcodes on top of
-// the video preview. This is optional, but recommended for better visual feedback.
+// Add a Barcode Capture overlay to the data capture view to render the location of captured
+// barcodes on top of the video preview. Viewfinders are visual components only, and as such
+// will not restrict the scan area.
+// This is optional, but recommended for better visual feedback.
 const overlay = ScanditBarcode.BarcodeCaptureOverlay.withBarcodeCaptureForView(
     barcodeCapture,
     dataCaptureView);
